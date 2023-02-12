@@ -1,13 +1,28 @@
+import 'package:act2prac/screens/homescreen.dart';
+import 'package:act2prac/screens/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:auth_buttons/auth_buttons.dart';
+import 'package:auto_size_text/auto_size_text.dart';
+import 'screens/about.dart';
 
 void main() => runApp(MaterialApp(
-      home: MyApp(),
+      debugShowCheckedModeBanner: false,
+      routes: {
+        "/": (context) => LoginScreen(),
+        "/second": (context) => SignUpScreen(),
+        "/third": (context) => HomeScreen(),
+        "/fourth": (context) => AboutScreen(),
+      },
     ));
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,31 +98,29 @@ class MyApp extends StatelessWidget {
                 size: 100,
               ),
             ),
-            Container(
-              child: Column(
-                children: [
-                  Text(
-                    "Travel",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 45,
-                      fontFamily: "Regular",
-                      letterSpacing: 2,
-                    ),
+            Column(
+              children: [
+                AutoSizeText(
+                  "Travel",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 45,
+                    fontFamily: "Regular",
+                    letterSpacing: 2,
                   ),
-                  Text(
-                    "assistant",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w800,
-                      fontSize: 45,
-                      fontFamily: "Regular",
-                      letterSpacing: 2,
-                    ),
+                ),
+                AutoSizeText(
+                  "assistant",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w800,
+                    fontSize: 45,
+                    fontFamily: "Regular",
+                    letterSpacing: 2,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ],
         ),
@@ -115,72 +128,50 @@ class MyApp extends StatelessWidget {
           height: 120,
         ),
         Container(
-          padding: EdgeInsets.all(13),
-          height: 55,
-          width: 280,
           decoration: BoxDecoration(
-            color: Colors.black.withOpacity(0.7),
             borderRadius: BorderRadius.circular(30),
+            color: Colors.black.withOpacity(0.6),
           ),
-          child: Row(
-            children: [
-              Container(
-                height: 100,
-                width: 30,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: Icon(
-                  Icons.person,
-                  color: Colors.black,
-                  size: 25,
-                ),
+          width: 275,
+          child: TextField(
+            decoration: InputDecoration(
+              prefixIcon: Icon(
+                Icons.person,
+                color: Colors.white,
               ),
-              SizedBox(
-                width: 10,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(30)),
               ),
-              Text(
-                "Username",
-                style: TextStyle(color: Colors.white.withOpacity(0.7)),
-              ),
-            ],
+              labelText: 'First Name',
+              labelStyle: TextStyle(color: Colors.white),
+              hintText: 'Enter Your  Name',
+              hintStyle: TextStyle(color: Colors.white),
+            ),
           ),
         ),
         SizedBox(
           height: 15,
         ),
         Container(
-          padding: EdgeInsets.all(13),
-          height: 55,
-          width: 280,
           decoration: BoxDecoration(
-            color: Colors.black.withOpacity(0.7),
             borderRadius: BorderRadius.circular(30),
+            color: Colors.black.withOpacity(0.6),
           ),
-          child: Row(
-            children: [
-              Container(
-                height: 100,
-                width: 30,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(
-                  Icons.lock,
-                  color: Colors.black,
-                  size: 20,
-                ),
+          width: 275,
+          child: TextField(
+            decoration: InputDecoration(
+              prefixIcon: Icon(
+                Icons.lock,
+                color: Colors.white,
               ),
-              SizedBox(
-                width: 10,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(30)),
               ),
-              Text(
-                "Password",
-                style: TextStyle(color: Colors.white.withOpacity(0.7)),
-              ),
-            ],
+              labelText: 'Password',
+              labelStyle: TextStyle(color: Colors.white),
+              hintText: 'Enter Your Password',
+              hintStyle: TextStyle(color: Colors.white),
+            ),
           ),
         ),
         SizedBox(
@@ -261,7 +252,9 @@ class MyApp extends StatelessWidget {
               width: 20,
             ),
             GoogleAuthButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, "/third");
+              },
               style: AuthButtonStyle(
                 buttonType: AuthButtonType.icon,
                 borderRadius: 100,
@@ -301,7 +294,9 @@ class MyApp extends StatelessWidget {
             borderRadius: BorderRadius.circular(30),
           ),
           child: TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, "/second");
+            },
             child: Text(
               "SIGN UP",
               style: TextStyle(color: Colors.white, fontSize: 20),
